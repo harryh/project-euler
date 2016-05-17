@@ -2,6 +2,6 @@
 
 tmpfile=ProjectEuler.scala
 
-./buildsource $1 > "$tmpfile"
+./gensource $1 > "$tmpfile"
 
 scala $tmpfile
