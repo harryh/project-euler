@@ -11,12 +11,12 @@ echo "object ProjectEuler {"
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
   echo "  $line"
-done < lib.scala
+done < Library.scala
 echo ""
 
 for f in *.scala
 do
-  if [ "$f" != "lib.scala" -a "$f" != "ProjectEuler.scala" ]; then
+  if [ "$f" != "Library.scala" -a "$f" != "ProjectEuler.scala" ]; then
     n="${f%.*}"
     numbers+=($n)
     echo "  def P"$n"(): String = {"
