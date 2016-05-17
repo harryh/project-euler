@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function solve {
+  echo "    val (s$1, t$1) = time(P$1)"
+  echo "    System.out.println(\"$1: \" + s$1 + \" \" + t$1.toString)"
+}
+
+numbers=()
+
+echo "object ProjectEuler {"
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+  echo "  $line"
+done < lib.scala
+echo ""
+
+for f in *.scala
+do
+  if [ "$f" != "lib.scala" -a "$f" != "ProjectEuler.scala" ]; then
+    n="${f%.*}"
+    numbers+=($n)
+    echo "  def P"$n"(): String = {"
+
+    while IFS='' read -r line || [[ -n "$line" ]]; do
+      echo "    $line"
+    done < $f
+    echo "  }"
+    echo ""
+  fi
+done
+
+echo "  def main(args: Array[String]): Unit = {"
+if [ "$1" != "" ]; then
+  solve $1
+else
+  for n in "${numbers[@]}"
+  do
+    solve $n
+  done
+fi
+echo "  }"
+echo "}"

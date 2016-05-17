@@ -1,0 +1,1 @@
+sumDigits(factorial(100))

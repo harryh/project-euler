@@ -1,0 +1,7 @@
+#!/bin/bash
+
+tmpfile=ProjectEuler.scala
+
+./buildsource $1 > "$tmpfile"
+
+scala $tmpfile
