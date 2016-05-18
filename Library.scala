@@ -6,7 +6,7 @@ implicit def intToString(i: Int): String = i.toString
 implicit def longToString(l: Long): String = l.toString
 implicit def bigintToString(bi: BigInt): String = bi.toString
 
-def time(f: () => String): (String, Duration) = {
+def time[A](f: () => A): (A, Duration) = {
   val start = Instant.now()
   val s = f()
   val end = Instant.now()
