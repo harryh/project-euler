@@ -2,7 +2,7 @@
 
 function solve {
   echo "    val (s$1, t$1) = time(P$1)"
-  echo "    System.out.println(\"$1: \" + s$1 + \" \" + t$1.toString)"
+  echo "    System.out.println(\"$1 (\" + t$1.toMillis + \"ms):\t\" + s$1)"
 }
 
 numbers=()

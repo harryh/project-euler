@@ -1,14 +1,16 @@
 import scala.language.implicitConversions
 
-import java.time.Duration
+import java.time.{Duration, Instant}
 
 implicit def intToString(i: Int): String = i.toString
 implicit def longToString(l: Long): String = l.toString
 implicit def bigintToString(bi: BigInt): String = bi.toString
 
 def time(f: () => String): (String, Duration) = {
+  val start = Instant.now()
   val s = f()
-  (s, Duration.ofDays(1))
+  val end = Instant.now()
+  (s, Duration.between(start, end))
 }
 
 def negate[A](f: A => Boolean): A => Boolean = {
