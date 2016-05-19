@@ -1,8 +1,7 @@
 #!/bin/bash
 
 function solve {
-  echo "    val (s$1, t$1) = time(P$1)"
-  echo "    System.out.println(\"$1 (\" + t$1.toMillis + \"ms):\t\" + s$1)"
+  echo "    timeAndPrintSolution(\"$1\", P$1)"
 }
 
 numbers=()

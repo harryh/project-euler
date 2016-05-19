@@ -6,11 +6,11 @@ implicit def intToString(i: Int): String = i.toString
 implicit def longToString(l: Long): String = l.toString
 implicit def bigintToString(bi: BigInt): String = bi.toString
 
-def time[A](f: () => A): (A, Duration) = {
+def timeAndPrintSolution(number: String, f: () => String): Unit = {
   val start = Instant.now()
-  val s = f()
-  val end = Instant.now()
-  (s, Duration.between(start, end))
+  val result = f()
+  val d = Duration.between(start, Instant.now())
+  System.out.println(number + " (" + d.toMillis + "ms):\t" + result)
 }
 
 def negate[A](f: A => Boolean): A => Boolean = {
