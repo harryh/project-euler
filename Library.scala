@@ -1,12 +1,18 @@
-import scala.language.implicitConversions
-
 import java.time.{Duration, Instant}
 
 def timeAndPrintSolution[A](number: String, f: () => A): Unit = {
   val start = Instant.now()
   val result = f()
+  val correct = answers.get(number).exists(_ == result.toString)
   val d = Duration.between(start, Instant.now())
-  System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString)
+  val check = if (correct) " ✓" else ""
+  System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString + check)
+}
+
+val answers = {
+  inputFile("answers.txt").map(_.split(" "))
+                          .map(a => (a(0), a(1)))
+                          .toMap
 }
 
 def negate[A](f: A => Boolean): A => Boolean = {
