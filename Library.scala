@@ -5,8 +5,8 @@ def timeAndPrintSolution[A](number: String, f: () => A): Unit = {
   val result = f()
   val correct = answers.get(number).exists(_ == result.toString)
   val d = Duration.between(start, Instant.now())
-  val check = if (correct) " ✓" else ""
-  System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString + check)
+  val check = if (correct) "✓" else "✗"
+  System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString + " " + check)
 }
 
 val answers = {
