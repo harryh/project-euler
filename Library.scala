@@ -2,15 +2,11 @@ import scala.language.implicitConversions
 
 import java.time.{Duration, Instant}
 
-implicit def intToString(i: Int): String = i.toString
-implicit def longToString(l: Long): String = l.toString
-implicit def bigintToString(bi: BigInt): String = bi.toString
-
-def timeAndPrintSolution(number: String, f: () => String): Unit = {
+def timeAndPrintSolution[A](number: String, f: () => A): Unit = {
   val start = Instant.now()
   val result = f()
   val d = Duration.between(start, Instant.now())
-  System.out.println(number + " (" + d.toMillis + "ms):\t" + result)
+  System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString)
 }
 
 def negate[A](f: A => Boolean): A => Boolean = {
