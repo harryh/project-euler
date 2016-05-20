@@ -73,8 +73,8 @@ def longStream(from: Long = 1L, step: Long = 1L): Stream[Long] = from #:: longSt
 
 def fibonacci(a: BigInt = 1, b: BigInt = 1): Stream[BigInt] = a #:: fibonacci(b, a + b)
 
-def divisors(n: Long): List[Long] = {
-  (1L to n).filter(i => isMultipleOf(n, i)).toList
+def properDivisors(n: Long): List[Long] = {
+  (1L to n / 2).filter(i => isMultipleOf(n, i)).toList
 }
 
 def numDivisors(n: Long): Long = {

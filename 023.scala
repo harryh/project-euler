@@ -2,7 +2,7 @@ val cache = scala.collection.mutable.HashMap(0 -> false)
 
 def isAbundant(n: Int): Boolean = {
   cache.getOrElseUpdate(n, {
-    divisors(n).dropRight(1).sum > n
+    properDivisors(n).sum > n
   })
 }
 

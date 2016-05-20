@@ -1,5 +1,5 @@
 def d(n: Long): Long = {
-  divisors(n).dropRight(1).sum
+  properDivisors(n).sum
 }
 
 def isAmicable(a: Long): Boolean = {
