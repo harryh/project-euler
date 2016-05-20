@@ -77,6 +77,10 @@ def properDivisors(n: Long): List[Long] = {
   (1L to n / 2).filter(i => isMultipleOf(n, i)).toList
 }
 
+def sumOfProperDivisors(n: Long): Long = {
+  properDivisors(n).sum
+}
+
 def numDivisors(n: Long): Long = {
   val end = math.sqrt(n).toLong
   (if (square(end) == n) 1 else 0) +
