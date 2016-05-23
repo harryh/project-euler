@@ -15,7 +15,7 @@ val results = for {
   (deltax, deltay) <- List((1,0), (0, 1), (1, 1), (1, -1)) if inBounds(x + maxOffset * deltax, y + maxOffset * deltay)
 } yield {
   val values = for (n <- 0 to maxOffset) yield grid(y + n * deltay)(x + n * deltax)
-  values.reduceLeft(_*_)
+  values.product
 }
 
 results.max

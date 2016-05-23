@@ -191,7 +191,7 @@ def sumDigits(n: BigInt): Long = digits(n).sum
 def countDigits(n: Long): Long = digits(n).length
 
 def digits(s: String): List[Int] = {
-  s.toList.map(_ - '0')
+  s.toList.map(_.asDigit)
 }
 
 def isPalindromic(n: Long, base: Int): Boolean = {
