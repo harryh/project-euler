@@ -7,4 +7,4 @@ def isAmicable(a: Long): Boolean = {
   a != b && d(b) == a
 }
 
-(1L to 10000L).filter(isAmicable(_)).sum
+(1L to 10000L).filter(isAmicable).sum

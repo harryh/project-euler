@@ -1,5 +1,5 @@
 def score(s: String): Long = {
-  s.toList.map(_ - '@').sum.toLong
+  s.map(_ - '@').sum
 }
 
 readWordFile("022.txt").sorted.zipWithIndex.map(t => score(t._1) * (t._2 + 1)).sum

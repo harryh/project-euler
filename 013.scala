@@ -1,1 +1,1 @@
-readBigIntFile("013.txt").reduceLeft(_+_).toString.take(10)
+readBigIntFile("013.txt").sum.toString.take(10)
