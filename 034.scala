@@ -1,5 +1,7 @@
-def isSumOfFactorialOfDigits(n: Long): Boolean = {
-  digits(n).map(factorial(_)).sum == n
+val factorials = (1 to 9).scanLeft(1)(_*_)
+
+def isSumOfFactorialOfDigits(n: Int): Boolean = {
+  digits(n).map(factorials).sum == n
 }
 
-(3L to 10000000L).filter(isSumOfFactorialOfDigits).sum
+(3 to 10000000).filter(isSumOfFactorialOfDigits).sum

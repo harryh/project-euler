@@ -52,7 +52,7 @@ def readBigIntFile(filename: String): Vector[BigInt] = {
 }
 
 def readWordFile(filename: String): Vector[String] = {
-  inputFile(filename).flatMap(_.split(",")).map(_.replaceAll("\"","")).toVector
+  inputFile(filename).flatMap(_.split(",")).map(_.init.tail).toVector
 }
 
 def iteratedStream[A](from: A)(f: A => Option[A]): Stream[A] = {
