@@ -6,4 +6,4 @@ def isCircularPrime(n: Int): Boolean = {
         .forall(isPrime)
 }
 
-(2 to 999999).count(isCircularPrime)
+(2 until 1000000).count(isCircularPrime)
