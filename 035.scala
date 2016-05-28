@@ -1,9 +1,9 @@
-def isCircularPrime(n: Long): Boolean = {
+def isCircularPrime(n: Int): Boolean = {
   val s = n.toString
-  (0 to s.length - 1).map(i => s.substring(i) + s.substring(0, i))
-                     .map(_.toLong)
-                     .distinct
-                     .forall(isPrime)
+  Stream.iterate(s)(s => s.tail :+ s.head)
+        .map(_.toLong)
+        .take(s.length)
+        .forall(isPrime)
 }
 
-(2L to 999999L).count(isCircularPrime)
+(2 to 999999).count(isCircularPrime)
