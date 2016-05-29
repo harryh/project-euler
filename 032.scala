@@ -4,4 +4,4 @@ def hasPandigitalProduct(n: Int): Boolean = {
                    .exists(isPandigital)
 }
 
-(1 until 10000).filter(hasPandigitalProduct).sum
+(1234 to 9876).filter(hasPandigitalProduct).sum
