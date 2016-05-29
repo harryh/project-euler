@@ -89,7 +89,7 @@ def numDivisors(n: Long): Long = {
 
 object Prime {
   def is(i: Long) = {
-    if (i == 1) false
+    if (i < 2) false
     else if (i == 2) true
     else if ((i & 1) == 0) false // efficient div by 2
     else prime(i)
