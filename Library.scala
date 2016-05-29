@@ -69,7 +69,7 @@ def mergeStreams(as: Stream[Long], bs: Stream[Long]): Stream[Long] = {
   }
 }
 
-def longStream(from: Long = 1L, step: Long = 1L): Stream[Long] = from #:: longStream(from + step)
+def longStream(from: Long = 1L, step: Long = 1L): Stream[Long] = from #:: longStream(from + step, step)
 
 def fibonacci(a: BigInt = 1, b: BigInt = 1): Stream[BigInt] = a #:: fibonacci(b, a + b)
 
