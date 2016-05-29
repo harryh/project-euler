@@ -3,8 +3,8 @@ import java.time.{Duration, Instant}
 def timeAndPrintSolution[A](number: String, f: () => A): Unit = {
   val start = Instant.now()
   val result = f()
-  val correct = answers.get(number).exists(_ == result.toString)
   val d = Duration.between(start, Instant.now())
+  val correct = answers.get(number).exists(_ == result.toString)
   val check = if (correct) "✓" else "✗"
   System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString + " " + check)
 }
