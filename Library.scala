@@ -3,8 +3,8 @@ import java.time.{Duration, Instant}
 def timeAndPrintSolution[A](number: String, f: () => A): Unit = {
   val start = Instant.now()
   val result = f()
-  val correct = answers.get(number).exists(_ == result.toString)
   val d = Duration.between(start, Instant.now())
+  val correct = answers.get(number).exists(_ == result.toString)
   val check = if (correct) "✓" else "✗"
   System.out.println(number + " (" + d.toMillis + "ms):\t" + result.toString + " " + check)
 }
@@ -52,7 +52,7 @@ def readBigIntFile(filename: String): Vector[BigInt] = {
 }
 
 def readWordFile(filename: String): Vector[String] = {
-  inputFile(filename).flatMap(_.split(",")).map(_.replaceAll("\"","")).toVector
+  inputFile(filename).flatMap(_.split(",")).map(_.init.tail).toVector
 }
 
 def iteratedStream[A](from: A)(f: A => Option[A]): Stream[A] = {
@@ -69,7 +69,7 @@ def mergeStreams(as: Stream[Long], bs: Stream[Long]): Stream[Long] = {
   }
 }
 
-def longStream(from: Long = 1L, step: Long = 1L): Stream[Long] = from #:: longStream(from + step)
+def longStream(from: Long = 1L, step: Long = 1L): Stream[Long] = from #:: longStream(from + step, step)
 
 def fibonacci(a: BigInt = 1, b: BigInt = 1): Stream[BigInt] = a #:: fibonacci(b, a + b)
 
@@ -89,7 +89,7 @@ def numDivisors(n: Long): Long = {
 
 object Prime {
   def is(i: Long) = {
-    if (i == 1) false
+    if (i < 2) false
     else if (i == 2) true
     else if ((i & 1) == 0) false // efficient div by 2
     else prime(i)
@@ -212,6 +212,11 @@ def isPandigital(n: BigInt): Boolean = {
 }
 
 def isPandigital(n: Long): Boolean = {
+  val d = digits(n)
+  (1 to d.length) == d.sorted
+}
+
+def isPandigital(n: String): Boolean = {
   val d = digits(n)
   (1 to d.length) == d.sorted
 }
