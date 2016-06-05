@@ -221,6 +221,9 @@ def isPandigital(n: String): Boolean = {
   (1 to d.length) == d.sorted
 }
 
-def isPermutation(m: Long, n: Long): Boolean = {
-  digits(m).sorted.equals(digits(n).sorted)
+def isPermutation(d: Long*): Boolean = {
+  d.toList
+   .map(n => digits(n).sorted)
+   .distinct
+   .length == 1
 }
