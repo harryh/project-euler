@@ -1,13 +1,14 @@
-val cache = scala.collection.mutable.HashMap(1L -> 1L)
-
-def collatzLength(n: Long): Long = {
-  def getNext(n: Long): Long = {
-    if (isEven(n)) n / 2 else 3 * n + 1
+def collatzLength(n: Int): Int = {
+  @annotation.tailrec
+  def collatzLength(n: Long, acc: Int): Int = {
+    if (n == 1) {
+      acc
+    } else {
+      val next = if (isEven(n)) n / 2 else 3 * n + 1
+      collatzLength(next, acc + 1)
+    }
   }
-
-  cache.getOrElseUpdate(n, {
-    1 + collatzLength(getNext(n))
-  })
+  collatzLength(n, 1)
 }
 
-(1L to 999999L).maxBy(collatzLength)
+(1 until 1000000).maxBy(collatzLength)
