@@ -221,9 +221,9 @@ def isPandigital(n: String): Boolean = {
   (1 to d.length) == d.sorted
 }
 
-def isPermutation(d: Long*): Boolean = {
-  d.toList
-   .map(n => digits(n).sorted)
-   .distinct
-   .length == 1
+def isPermutation(numbers: Long*): Boolean = {
+  !numbers.isEmpty && {
+    val strings = numbers.map(_.toString.sorted)
+    strings.tail.forall(_ == strings.head)
+  }
 }
