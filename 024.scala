@@ -6,7 +6,7 @@ for (i <- 1 to digits.length) {
   val split = remain / fact
   remain = remain % fact
   val (a, b) = digits.splitAt(split)
-  digits = a ++ b.tail :+ b.head
+  digits = a + b.tail + b.head
 }
 
 digits
