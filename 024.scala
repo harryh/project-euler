@@ -1,12 +1,10 @@
-var digits = "0123456789"
-var remain = 1000000 - 1
+val digits = "0123456789"
 
-for (i <- 1 to digits.length) {
-  val fact = factorial(10 - i).toInt
-  val split = remain / fact
-  remain = remain % fact
-  val (a, b) = digits.splitAt(split)
-  digits = a + b.tail + b.head
+def pickDigit(tuple: (String, Int), i: Int): (String, Int) = {
+  val (digits, remain) = tuple
+  val fact = factorial(digits.length - i).toInt
+  val (a, b) = digits.splitAt(remain / fact)
+  (a + b.tail + b.head, remain % fact)
 }
 
-digits
+(1 to digits.length).foldLeft((digits, 1000000 - 1))(pickDigit)._1
