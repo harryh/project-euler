@@ -1,10 +1,11 @@
 var digits = (0 to 9).toList
-var remain = BigInt(1000000 - 1)
+var remain = 1000000 - 1
 
 for (i <- 1 to digits.length) {
-  val split = remain / factorial(10 - i)
-  remain = remain % factorial(10 - i)
-  val (a, b::c) = digits.splitAt(split.toInt)
+  val fact = factorial(10 - i).toInt
+  val split = remain / fact
+  remain = remain % fact
+  val (a, b::c) = digits.splitAt(split)
   digits = a ++ c :+ b
 }
 
