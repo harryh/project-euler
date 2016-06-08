@@ -1,3 +1,4 @@
-// primes().filter(isPandigital).takeWhile(_ <= 999999999).last
-
-1
+primes().takeWhile(_ <= 7654321)
+        .reverse
+        .filter(isPandigital)
+        .head
