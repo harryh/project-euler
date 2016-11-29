@@ -4,4 +4,4 @@ tmpfile=ProjectEuler.scala
 
 ./gensource $1 > "$tmpfile"
 
-scala $tmpfile
+scala -deprecation $tmpfile
