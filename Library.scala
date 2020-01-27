@@ -55,23 +55,23 @@ def readWordFile(filename: String): Vector[String] = {
   inputFile(filename).flatMap(_.split(",")).map(_.init.tail).toVector
 }
 
-def iteratedStream[A](from: A)(f: A => Option[A]): Stream[A] = {
-  f(from).map(from #:: iteratedStream(_)(f))
-         .getOrElse(Stream(from))
-}
+// def iteratedStream[A](from: A)(f: A => Option[A]): LazyList[A] = {
+//   f(from).map(from #:: iteratedStream(_)(f))
+//          .getOrElse(LazyList(from))
+// }
 
-def mergeStreams(as: Stream[Long], bs: Stream[Long]): Stream[Long] = {
+def merge(as: LazyList[Long], bs: LazyList[Long]): LazyList[Long] = {
   (as, bs) match {
-    case (Stream.Empty, bss) => bss
-    case (ass, Stream.Empty) => ass
-    case (a #:: ass, b #:: bss) if (a < b) => a #:: mergeStreams(ass, bs)
-    case (_, b #:: bss) => b #:: mergeStreams(as, bss)
+    case (LazyList(), bss) => bss
+    case (ass, LazyList()) => ass
+    case (a #:: ass, b #:: bss) if (a < b) => a #:: merge(ass, bs)
+    case (_, b #:: bss) => b #:: merge(as, bss)
   }
 }
 
-def longStream(from: Long = 1L, step: Long = 1L): Stream[Long] = from #:: longStream(from + step, step)
+def longs(from: Long = 1L, step: Long = 1L): LazyList[Long] = from #:: longs(from + step, step)
 
-def fibonacci(a: BigInt = 1, b: BigInt = 1): Stream[BigInt] = a #:: fibonacci(b, a + b)
+def fibonacci(a: BigInt = 1, b: BigInt = 1): LazyList[BigInt] = a #:: fibonacci(b, a + b)
 
 def properDivisors(n: Long): List[Long] = {
   (1L to n / 2).filter(i => isMultipleOf(n, i)).toList
@@ -95,12 +95,12 @@ object Prime {
     else prime(i)
   }
 
-  def primes: Stream[Long] = 2 #:: prime3
+  def primes: LazyList[Long] = 2 #:: prime3
 
-  private val prime3: Stream[Long] = {
+  private val prime3: LazyList[Long] = {
     @annotation.tailrec
     def nextPrime(i: Long): Long = if (prime(i)) i else nextPrime(i + 2)
-    def next(i: Long): Stream[Long] = i #:: next(nextPrime(i + 2))
+    def next(i: Long): LazyList[Long] = i #:: next(nextPrime(i + 2))
     3 #:: next(5)
   }
 

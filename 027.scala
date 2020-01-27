@@ -1,7 +1,7 @@
 def numConsecutivePrimes(a: Long, b: Long): Int = {
-  longStream(0).map(n => square(n) + a * n + b)
-               .takeWhile(isPrime)
-               .length
+  longs(0).map(n => square(n) + a * n + b)
+          .takeWhile(isPrime)
+          .length
 }
 
 val candidates = for {

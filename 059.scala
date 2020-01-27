@@ -1,7 +1,7 @@
 val cipherText = inputFile("059.txt").flatMap(_.split(",")).map(_.toInt.toChar).mkString
 
 def decode(key: Char*): String = {
-  val keys = Stream.continually(key).flatten
+  val keys = LazyList.continually(key).flatten
   cipherText.zip(keys).map(t => (t._1 ^ t._2).toChar).mkString
 }
 

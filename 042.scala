@@ -1,7 +1,7 @@
-val triangleStream = longStream().map(n => (0.5 * n * (n + 1)).toLong)
+val triangles = longs().map(n => (0.5 * n * (n + 1)).toLong)
 
 def isTriangleNumber(n: Int): Boolean = {
-  triangleStream.takeWhile(_ <= n).last == n
+  triangles.takeWhile(_ <= n).last == n
 }
 
 def isTriangleWord(s: String): Boolean = {
