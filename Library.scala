@@ -223,7 +223,7 @@ def isPandigital(n: String): Boolean = {
 
 def isPermutation(numbers: Long*): Boolean = {
   !numbers.isEmpty && {
-    val strings = numbers.map(_.toString.sorted)
+    val strings = numbers.map(_.toString.toSeq.sorted)
     strings.tail.forall(_ == strings.head)
   }
 }
