@@ -1,7 +1,7 @@
 val pentagonals = longs().map(n => (0.5 * n * (3 * n - 1)).toLong)
 
 def isPentagonal(n: Long): Boolean = {
-  val x = (math.sqrt(24 * n + 1) + 1.0) / 6.0
+  val x = (sqrt(24 * n + 1) + 1.0) / 6.0
   x.toInt == x
 }
 

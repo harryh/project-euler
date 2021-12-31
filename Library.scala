@@ -33,10 +33,12 @@ def pow(x: Long, y: Long, acc: Long = 1): Long = {
   if (y == 0) acc else pow(x, y - 1, x * acc)
 }
 
+def sqrt(n: Long): Double = math.sqrt(n.toDouble)
+
 def square(n: Long): Long = pow(n, 2)
 def isSquare(n: Long): Boolean = {
-  val sqrt = math.sqrt(n).toLong
-  square(sqrt) == n
+  val s = sqrt(n).toLong
+  square(s) == n
 }
 
 def inputFile(filename: String): Iterator[String] = {
@@ -82,7 +84,7 @@ def sumOfProperDivisors(n: Long): Long = {
 }
 
 def numDivisors(n: Long): Long = {
-  val end = math.sqrt(n).toLong
+  val end = sqrt(n).toLong
   (if (square(end) == n) 1 else 0) +
     (1L to end - 1).count(i => isMultipleOf(n, i)) * 2
 }
@@ -105,7 +107,7 @@ object Prime {
   }
 
   // assumes not even, check evenness before calling - perf note: must pass partially applied >= method
-  private def prime(i: Long) = prime3.takeWhile(math.sqrt(i) >= _).forall(i % _ != 0)
+  private def prime(i: Long) = prime3.takeWhile(sqrt(i) >= _).forall(i % _ != 0)
 }
 
 def isPrime(n: Long) = Prime.is(n)
@@ -137,7 +139,7 @@ def φ(nn: Long): Long = {
   var n = nn
   var p = 1L
   var i = 2L
-  var end = math.sqrt(n)
+  var end = sqrt(n)
   while (i <= end) {
     if (n % i == 0) {  // Found a factor
       p = p * (i - 1)
@@ -146,7 +148,7 @@ def φ(nn: Long): Long = {
         p = p * i
         n = n / i
       }
-      end = math.sqrt(n)
+      end = sqrt(n)
     }
     i = i + 1
   }
