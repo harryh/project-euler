@@ -15,6 +15,20 @@ val answers = {
                           .toMap
 }
 
+def memoize[A1, B](f: A1 => B): A1 => B = {
+  val cache = new scala.collection.mutable.HashMap[A1, B]()
+  (a) => {
+    cache.getOrElseUpdate(a, f(a))
+  }
+}
+
+def memoize[A1, A2, B](f: (A1, A2) => B): (A1, A2) => B = {
+  val cache = new scala.collection.mutable.HashMap[(A1, A2), B]()
+  (a1, a2) => {
+    cache.getOrElseUpdate((a1, a2), f(a1, a2))
+  }
+}
+
 def negate[A](f: A => Boolean): A => Boolean = {
   (a: A) => !f(a)
 }
