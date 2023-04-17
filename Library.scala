@@ -130,10 +130,11 @@ def isComposite(n: Long) = !isPrime(n)
 def primes() = Prime.primes
 
 def primeFactors(number: Long, list: List[Long] = List()): List[Long] = {
-  for (n <- primes().takeWhile(_ <= number) if (number % n == 0)) {
-    return primeFactors(number / n, list :+ n)
-  }
-  list
+  primes().takeWhile(_ <= number)
+          .filter(number % _ == 0)
+          .headOption
+          .map(n => primeFactors(number / n, list :+ n))
+          .getOrElse(list)
 }
 
 def gcd(x: Long, y: Long): Long = {
