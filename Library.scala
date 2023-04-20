@@ -129,12 +129,14 @@ def isComposite(n: Long) = !isPrime(n)
 
 def primes() = Prime.primes
 
+@annotation.tailrec
 def primeFactors(number: Long, list: List[Long] = List()): List[Long] = {
-  primes().takeWhile(_ <= number)
-          .filter(number % _ == 0)
-          .headOption
-          .map(n => primeFactors(number / n, list :+ n))
-          .getOrElse(list)
+  if (number == 1) {
+    list
+  } else {
+    val factor = primes().find(number % _ == 0).get
+    primeFactors(number / factor, list :+ factor)
+  }
 }
 
 def gcd(x: Long, y: Long): Long = {
