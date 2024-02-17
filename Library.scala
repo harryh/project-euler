@@ -99,8 +99,8 @@ def sumOfProperDivisors(n: Long): Long = {
 
 def numDivisors(n: Long): Long = {
   val end = sqrt(n).toLong
-  (if (square(end) == n) 1 else 0) +
-    (1L to end - 1).count(i => isMultipleOf(n, i)) * 2
+  (if (isSquare(n)) -1 else 0) +
+    (1L to end).count(i => isMultipleOf(n, i)) * 2
 }
 
 object Prime {
